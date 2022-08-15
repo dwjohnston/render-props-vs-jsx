@@ -6,6 +6,22 @@ import { SimpleModal2 } from './components/SimpleModal2';
 import { SimpleModal3 } from './components/SimpleModal3';
 import { SimpleModal4 } from './components/SimpleModal4';
 
+
+const SomeFunction = () => {
+
+  const [value, setValue] = useState(1);
+  
+  return <div>
+    {value}
+
+    <button onClick = {() => setValue(value+1)}>Click to increment</button>
+
+  </div>
+
+
+
+}
+
 function App() {
 
 
@@ -72,6 +88,9 @@ function App() {
             <button onClick={closeModalFn}> click me to close</button>
           </div>
         }} />
+
+
+        <SimpleModal3 buttonText='Simple Modal 3 - but my content has a hook (I will error)' renderContent={SomeFunction} />
       </header>
     </div>
   );
