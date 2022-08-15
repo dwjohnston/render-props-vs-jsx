@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { SimpleModal1 } from './components/SimpleModal1';
+import { SimpleModal2 } from './components/SimpleModal2';
+import { SimpleModal3 } from './components/SimpleModal3';
+import { SimpleModal4 } from './components/SimpleModal4';
 
 function App() {
+
+
+  const [value, setValue] = useState('');
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +26,52 @@ function App() {
         >
           Learn React
         </a>
+
+        <SimpleModal1 buttonText='Click to open SimpleModal1'>
+          I am SimpleModal1's content
+        </SimpleModal1>
+
+        <SimpleModal2 buttonText='Click to open SimpleModal1'
+          renderButton={(onClick) => {
+            return <button onClick={onClick} style={{
+              border: "solid 1px red",
+              width: 100,
+              height: 100
+            }}
+            >Click to open SimpleModal2</button>
+          }}
+
+        >
+          I am SimpleModal2's content
+        </SimpleModal2>
+
+
+        <SimpleModal3 buttonText='Click to open SimpleModal3' renderContent={(closeModalFn) => {
+          return <div>
+
+            I am SimpleModal3's content. 
+
+            <button onClick={closeModalFn}> click me to close</button>
+          </div>
+        }} />
+
+        <SimpleModal3 buttonText='Click to open SimpleModal3 problem example (apparently not a problem!)' renderContent={(closeModalFn) => {
+          return <div>
+
+            I am SimpleModal3's content. 
+            <input value={value} onChange={(e) => setValue(e.target.value)}/>
+            <button onClick={closeModalFn}> click me to close</button>
+          </div>
+        }} />
+
+        <SimpleModal4 buttonText='Click to open SimpleModal4 problem example (this is a problem!)' ModalContent={({closeModalFn}) => {
+          return <div>
+
+            I am SimpleModal4's content. 
+            <input value={value} onChange={(e) => setValue(e.target.value)}/>
+            <button onClick={closeModalFn}> click me to close</button>
+          </div>
+        }} />
       </header>
     </div>
   );
